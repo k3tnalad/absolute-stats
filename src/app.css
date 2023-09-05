@@ -2,7 +2,6 @@
 
 :root {
   font-family: 'Titillium Web', sans-serif;;
-  font-size: 16px;
   line-height: 24px;
   font-weight: 400;
   font-synthesis: none;
@@ -12,7 +11,7 @@
   -webkit-text-size-adjust: 100%;
 
   --clr-accent: #3D195B;
-  --clr-main-light-bg: #F4EDED;
+  --clr-main-light-bg: #EDE9E8;
   --clr-font: #000;
   --clr-secondary-gray: #969A97;
 

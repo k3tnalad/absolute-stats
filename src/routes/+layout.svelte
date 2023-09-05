@@ -27,7 +27,8 @@
 <style>
     section.nav {
         height: auto;
-        background-color: var(--clr-accent);
+        background: rgb(2,0,36);
+        background: linear-gradient(106deg, rgba(2,0,36,1) 0%, rgba(61,25,91,1) 46%, rgba(0,212,255,1) 100%); 
         padding: .5em;
         color: aliceblue;
         font-weight: 500;

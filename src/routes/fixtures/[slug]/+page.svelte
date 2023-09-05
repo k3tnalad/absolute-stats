@@ -1,4 +1,5 @@
 <script>
+    import dayjs from 'dayjs';
     export let data;
     // console.log(data)
     let fixtureBlob = {
@@ -76,7 +77,7 @@
             </span>
         </div>
         <div class="generalInfo">
-            <p class="date">📆 Date: {(fixtureBlob.fixture.date).split('T')[0]}</p>
+            <p class="date">📆 Date: {dayjs(fixtureBlob.fixture.date).format('MMMM D, YYYY h:mm A')}</p>
             <p class="venue">🏟️ Venue: {fixtureBlob.fixture.venue.name}</p>
             <p class="referee">👀 Referee: {fixtureBlob.fixture.referee}</p>
         </div>
@@ -171,10 +172,10 @@
     span.score {
         height: 100%;
         padding: .5em .3em;
-        color: aliceblue;
         display: grid;
         place-items: center;
         font-weight: 600;
+        font-size: 22px;
     }
     nav {
         width: 100%;

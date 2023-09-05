@@ -1,4 +1,5 @@
 <script>
+    import dayjs from 'dayjs';
     import '../../app.css';
     export let data;
     let fixtures = data.fixtures;
@@ -47,7 +48,7 @@
                     </span>
                 </div>
                 <div class="secondaryData">
-                    <span class="date">{(fixture.fixture.date).split('T')[0]}</span>
+                    <span class="date">{dayjs((fixture.fixture.date)).format('MMMM D, YYYY h:mm A')}</span>
                 </div>
             </a>
         {/each}
