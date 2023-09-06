@@ -1,6 +1,6 @@
 <script>
     import '../app.css'
-    let title = 'absolute EPL stats'
+    let title = 'Absolute EPL Stats'
 </script>
 
 
@@ -24,5 +24,8 @@
     p {
         padding: 1em 0;
         line-height: 1.5em;
+    }
+    h3 {
+        text-align: center;
     }
 </style>

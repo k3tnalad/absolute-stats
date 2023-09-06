@@ -1,5 +1,5 @@
 export async function load({fetch}) {
-    const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?league=39&season=2023&last=10';
+    const url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?league=39&season=2023&last=20';
     const options = {
 	method: 'GET',
 	headers: {

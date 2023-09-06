@@ -1,7 +1,15 @@
 <script>
     import dayjs from 'dayjs';
+    import REDCARD from '$lib/assets/REDCARD.png'
+    import YELLOWCARD from '$lib/assets/YELLOWCARD.png'
+    import VAR from '$lib/assets/VAR.png'
+    import SUB from '$lib/assets/SUB.png'
+    import GOAL from '$lib/assets/GOAL.png'
+
+
     export let data;
-    // console.log(data)
+
+
     let fixtureBlob = {
         teams: data.fixture.response[0].teams,
         goals: data.fixture.response[0].goals,
@@ -49,15 +57,17 @@
         return string;
       }
     }
-    function eventTypeHandler(str) {
-        if(str === 'Goal') {
-            return '⚽'
-        } else if (str === 'subst') {
-            return '♻️'
-        } else if (str === 'Card') {
-            return '🟨'
-        } else if (str === 'Var') {
-            return '🖥️'
+    function eventTypeHandler(event) {
+        let eventType = event.type;
+        if(eventType === 'Goal') {
+            return GOAL;
+        } else if (eventType === 'subst') {
+            return SUB;
+        } else if (eventType === 'Card') {
+            if (event.detail === "Red Card") return REDCARD;
+            else return YELLOWCARD;
+        } else if (eventType === 'Var') {
+            return VAR;
         }
     }
 
@@ -108,11 +118,53 @@
             {:else if eventsVisible}
                  <div class="events">
                 {#each fixtureBlob.events as event}
-                    <div class="event {homeTeam !== event.team.name ? 'align' : ''}">
-                        <span>{eventTypeHandler(event.type)}</span>
-                        <span>{event.player.name}</span>
+                    {#if homeTeam === event.team.name}
+                    <div class="event left">
+                        <img src="{eventTypeHandler(event)}" alt="type of an event">
+                        {#if event.type === 'subst'}
+                            <span>   
+                                <p style="color: darkred;">{event.player.name}</p>
+                                <p style="color: darkgreen;">{event.assist.name}</p>
+                            </span>
+                        {:else if event.type === 'Goal' && event.detail === 'Own Goal'} 
+                            <span>   
+                                <p>{event.player.name} (o. g.)</p>
+                            </span>
+                        {:else if event.type === 'Goal' && event.detail === 'Normal Goal'}
+                            <span>   
+                                <p>{event.player.name}</p>
+                            </span>
+                        {:else if event.type === 'Card'} 
+                            <span>   
+                                <p>{event.player.name}</p>
+                            </span>
+                        {/if}
                         <span>{event.time.elapsed}'</span>
                     </div>
+                    {:else}
+                    <div class="event right">
+                        <span>{event.time.elapsed}'</span>
+                        {#if event.type === 'subst'}
+                            <span>   
+                                <p style="color: darkred;">{event.player.name}</p>
+                                <p style="color: darkgreen;">{event.assist.name}</p>
+                            </span>
+                            {:else if event.type === 'Goal' && event.detail === 'Own Goal'} 
+                            <span>   
+                                <p>{event.player.name} (o. g.)</p>
+                            </span>
+                        {:else if event.type === 'Goal' && event.detail === 'Normal Goal'}
+                            <span>   
+                                <p>{event.player.name}</p>
+                            </span>
+                        {:else if event.type === 'Card'} 
+                            <span>   
+                                <p>{event.player.name}</p>
+                            </span>
+                        {/if}
+                        <img src="{eventTypeHandler(event)}" alt="type of an event">
+                    </div>
+                    {/if}
                 {/each}
             </div>
             {:else if lineupsVisibile}
@@ -203,7 +255,7 @@
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        font-size: 15px;
+        font-size: 16px;
         line-height: 2;
     }
     p.homePlayer {
@@ -225,11 +277,24 @@
     p.coachA {
         text-align: right;
     }
-    div.event {
-        text-align: left;
+    div.events {
+        display: flex;
+        flex-direction: column;
+        gap: .2em;
     }
-    div.event.align {
-        text-align: right;
+    div.event {
+        height: 3em;
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        padding: .3em;
+        border-bottom: 1px solid black;
+    }
+    div.event.left {
+        justify-content: left;
+    }
+    div.event.right {
+        justify-content: right;
     }
     div.result, div.generalInfo, div.mainDataContainer {
         padding: 1em;
@@ -265,3 +330,4 @@
         height: 140px;
     }
 </style>
+

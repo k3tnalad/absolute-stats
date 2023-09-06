@@ -3,26 +3,18 @@
     import '../../app.css';
     export let data;
     let fixtures = data.fixtures;
-    console.log(fixtures);
 
-    const nullHandler = (input) => {
-        if (input === null || 'null') {
-            return '0';
+    const nameShortener = (string) => {
+      if (string === 'Nottingham Forest') {
+        return 'N. Forest'
+        } else if (string === 'Manchester City') {
+        return 'Man City'
+        } else if (string === 'Manchester United') {
+            return 'Man United'
+        } else if (string === 'Crystal Palace') {
+            return 'C. Palace';
         } else {
-            return input;
-        }
-    }
-        const nameShortener = (string) => {
-    if (string === 'Nottingham Forest') {
-      return 'N. Forest'
-      } else if (string === 'Manchester City') {
-      return 'Man City'
-      } else if (string === 'Manchester United') {
-        return 'Man United'
-      } else if (string === 'Crystal Palace') {
-        return 'C. Palace';
-      } else {
-        return string;
+            return string;
       }
     }
 </script>

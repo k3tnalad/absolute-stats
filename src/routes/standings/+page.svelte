@@ -1,8 +1,6 @@
 <script>
-  import { fade, slide } from "svelte/transition";
 export let data;
 let standings = data.table[0].league.standings[0];
-console.log(standings);
 const nameShortener = (string) => {
     if (string === 'Nottingham Forest') {
       return 'N. Forest'

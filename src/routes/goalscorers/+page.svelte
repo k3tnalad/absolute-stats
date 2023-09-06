@@ -50,8 +50,7 @@ const nullHandler = (x) => {
         justify-content: center;
         flex-direction: column;
         font-size: 20px;
-        padding: .5em;
-        line-height: 1.71em;
+        padding-top: 1em;
     }
     div.header, div.player {
         width: 100%;
