@@ -138,6 +138,11 @@
                             <span>   
                                 <p>{event.player.name}</p>
                             </span>
+                        {:else if event.type === 'Var'} 
+                            <span>   
+                                <p>{event.player.name}</p>
+                                <p>{event.detail}</p>
+                            </span>
                         {/if}
                         <span>{event.time.elapsed}'</span>
                     </div>
@@ -160,6 +165,11 @@
                         {:else if event.type === 'Card'} 
                             <span>   
                                 <p>{event.player.name}</p>
+                            </span>
+                        {:else if event.type === 'Var'} 
+                            <span>   
+                                <p>{event.player.name}</p>
+                                <p>{event.detail}</p>
                             </span>
                         {/if}
                         <img src="{eventTypeHandler(event)}" alt="type of an event">
